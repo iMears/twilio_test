@@ -18,6 +18,7 @@
   "homepage": "https://github.com/iMears/twilio_test#readme",
   "dependencies": {
     "dotenv": "^1.2.0",
+    "express": "^4.13.3",
     "twilio": "^2.3.0"
   }
 }
