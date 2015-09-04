@@ -1,5 +1,4 @@
 require('dotenv').load();
-var http = require('http')
 
 //require the Twilio module and create a REST client
 var client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
@@ -13,22 +12,22 @@ client.messages.create({
 
 function(err, responseData) { //this function is executed when a response is received from Twilio
   if (!err) { // "err" is an error received during the request, if any
-      // "responseData" is a JavaScript object containing data received from Twilio.
-      console.log("responseData", responseData);
-    }
+    // "responseData" is a JavaScript object containing data received from Twilio.
+    console.log("responseData", responseData);
+  }
 });
 
 //Place a phone call, and respond with TwiML instructions from the given URL
 client.makeCall({
-    to:'+17757426305', // Any number Twilio can call
-    from: '+14103178088', // A number you bought from Twilio and can use for outbound communication
-    url: 'http://a0b66bab.ngrok.io/song' // A URL that produces an XML document (TwiML) which contains instructions for the call
+  to:'+17757426305', // Any number Twilio can call
+  from: '+14103178088', // A number you bought from Twilio and can use for outbound communication
+  url: 'http://625a3ab3.ngrok.io/song' // A URL that produces an XML document (TwiML) which contains instructions for the call
 },
 
 function(err, responseData) {
-    if (!err) {
-      console.log("responseData.from: ", responseData.from);
-    } else {
-      console.log("Error!", err);
-    }
+  if (!err) {
+    console.log("responseData.from: ", responseData.from);
+  } else {
+    console.log("Error!", err);
+  }
 });
