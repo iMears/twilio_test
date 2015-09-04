@@ -6,9 +6,9 @@ var http       = require('http');
 var twilio     = require('twilio');
 var path       = require('path');
 var bodyParser = require('body-parser')
-var client     = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 //require the Twilio module and create a REST client
+var client     = twilio(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -45,7 +45,7 @@ app.post('/text-message', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/json'});
     res.end("Success! Message was sent.");
   } else {
-    res.writeHead(403, {'Content-Type': 'text/json'});
+    res.writeHead(500, {'Content-Type': 'text/json'});
     res.end("Error! Message was not sent.");
   }
 
@@ -70,7 +70,7 @@ app.post('/phone-message', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/json'});
     res.end("Success! Phone message was sent.");
   } else {
-    res.writeHead(403, {'Content-Type': 'text/json'});
+    res.writeHead(500, {'Content-Type': 'text/json'});
     res.end("Error! Phone message was not sent.");
   }
 
@@ -102,7 +102,6 @@ app.post('/response/song', function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/xml'});
   res.end(twiml.toString());
 });
-
 
 http.createServer(app).listen(1337, function () {
   console.log("Express server listening on port 1337...");
