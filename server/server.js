@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-
 // enable cross-origin resource sharing
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -58,7 +57,7 @@ app.post('/phone-message', function (req, res) {
     client.makeCall({
       to:req.body.sendToNumber, // Any number Twilio can call
       from: '+14103178088', // A number you bought from Twilio and can use for outbound communication
-      url: 'http://80caedf7.ngrok.io/response/' + encodeURIComponent(req.body.message) // A URL that produces an XML document (TwiML) which contains instructions for the call
+      url: 'http://5971dd36.ngrok.io/response/' + encodeURIComponent(req.body.message) // A URL that produces an XML document (TwiML) which contains instructions for the call
     },
 
     function(err, responseData) {

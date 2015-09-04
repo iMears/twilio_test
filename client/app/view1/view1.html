@@ -1,1 +1,60 @@
-<p>This is the partial for view 1.</p>
+<div class="jumbotron">
+  <div class="container">
+    <h1>Send a message!</h1>
+    <p>This is a simple Twilio test app.</p>
+    <p><a class="btn btn-primary btn-lg" ng-click="View1Ctrl.learnMore()" role="button">Learn more &raquo;</a></p>
+  </div>
+</div>
+
+<div class="container">
+  <form  class="form-group" ng-submit="View1Ctrl.sendMessage()">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-4">
+        <h2>Text Message</h2>
+        <input type="text" class="form-control" placeholder="Enter a message" ng-model="View1Ctrl.message">
+        <br>
+        <p>Enter a text message that will be sent to the given phone number.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Phone number</h2>
+        <input type="text" class="form-control" placeholder="+18001115555" ng-model="View1Ctrl.sendToNumber">
+        <br>
+        <p>Use this format for phone numbers +18001115555. You may also use the format (800)1111-5555.</p>
+     </div>
+     <div class="col-md-2">
+        <br><br><br>
+        <button type="submit" class="btn btn-default">Send message</button>
+      </div>
+    </div>
+  </form>
+
+  <br><hr>
+
+  <form class="form-group" ng-submit="View1Ctrl.sendPhoneMessage()">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-4">
+        <h2>Phone Message</h2>
+        <input type="text" class="form-control" placeholder="Enter a message" ng-model="View1Ctrl.phoneMessage">
+        <br>
+        <p>Enter a message that will be converted to speech. It will then make a phone call to the number provided and play the transcribed voice message.</p>
+      </div>
+      <div class="col-md-4">
+        <h2>Phone number</h2>
+        <input type="text" class="form-control" placeholder="+18001115555" ng-model="View1Ctrl.sendToNumber2">
+        <br>
+        <p>Use this format for phone numbers +18001115555. You may also use the format (800)1111-5555.</p>
+      </div>
+      <div class="col-md-2">
+        <br><br><br>
+        <button type="submit" class="btn btn-default">Send message</button>
+      </div>
+    </div>
+  </form>
+
+  <hr>
+
+  <footer>
+    <p></p>
+  </footer>
+
+</div> <!-- /container -->
