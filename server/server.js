@@ -16,6 +16,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+
+// enable cross-origin resource sharing
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.post('/text-message', function (req, res) {
   if (req.body.sendToNumber && req.body.message) {
     //Send an SMS text message
@@ -29,7 +37,10 @@ app.post('/text-message', function (req, res) {
       if (!err) { // "err" is an error received during the request, if any
         // "responseData" is a JavaScript object containing data received from Twilio.
         console.log("responseData", responseData);
+      } else if (err) {
+        console.error("Error", err)
       }
+
     });
 
     res.writeHead(200, {'Content-Type': 'text/json'});
@@ -47,7 +58,7 @@ app.post('/phone-message', function (req, res) {
     client.makeCall({
       to:req.body.sendToNumber, // Any number Twilio can call
       from: '+14103178088', // A number you bought from Twilio and can use for outbound communication
-      url: 'http://ad2524dc.ngrok.io/response/' + req.body.message // A URL that produces an XML document (TwiML) which contains instructions for the call
+      url: 'http://80caedf7.ngrok.io/response/' + encodeURIComponent(req.body.message) // A URL that produces an XML document (TwiML) which contains instructions for the call
     },
 
     function(err, responseData) {
@@ -67,9 +78,6 @@ app.post('/phone-message', function (req, res) {
 });
 
 app.post('/response/:message?', function (req, res) {
-  if (req.params.message) {
-    console.log(req.params.message);
-  }
 
   var twiml = new twilio.TwimlResponse();
   var message = req.params.message || "Hello, this is a test app! Goodbye.";
@@ -98,7 +106,7 @@ app.post('/response/song', function (req, res) {
 
 
 http.createServer(app).listen(1337, function () {
-    console.log("Express server listening on port 1337...");
+  console.log("Express server listening on port 1337...");
 });
 
 app.use("/public", express.static(__dirname + '/public'));
