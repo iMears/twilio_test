@@ -83,7 +83,7 @@ app.post('/response/:message?', function (req, res) {
 
   twiml.say(message, {
     voice:'woman',
-    language:'ko-KR'
+    language:'en-US'
   });
 
   console.log(twiml.toString());
